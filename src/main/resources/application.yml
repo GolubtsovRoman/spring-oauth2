@@ -1,0 +1,30 @@
+server.port: 8090
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+
+          #from https://github.com/settings/applications/2426022
+          github:
+            client-id: f6d3a62b1c8e3aaa57c0
+            client-secret: 438b19a2ede72b00dfa10e08b80c08c30bb225be
+
+          #from https://oauth.yandex.ru/client/6bf668cf8fe543b8a2df44bf5078217f
+          yandex:
+            provider: yandex
+            client-name: Yandex
+            client-id: 6bf668cf8fe543b8a2df44bf5078217f
+            client-secret: 9096ab5d330041c496c4fbc9dbeefd50
+            redirect-uri: http://localhost:${server.port}/login/oauth2/code/yandex
+            authorization-grant-type: authorization_code
+            scope:
+              - login:email
+              - login:info
+        provider:
+          yandex:
+            authorization-uri: https://oauth.yandex.ru/authorize
+            token-uri: https://oauth.yandex.ru/token
+            user-name-attribute: default_email
+            user-info-uri: https://login.yandex.ru/info
