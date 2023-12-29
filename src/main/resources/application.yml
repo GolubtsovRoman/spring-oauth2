@@ -1,4 +1,8 @@
+
+logging.level.root: trace
+
 server.port: 8090
+base-url: http://localhost:${server.port}
 
 spring:
   security:
@@ -17,7 +21,7 @@ spring:
             client-name: Yandex
             client-id: 6bf668cf8fe543b8a2df44bf5078217f
             client-secret: 9096ab5d330041c496c4fbc9dbeefd50
-            redirect-uri: http://localhost:${server.port}/login/oauth2/code/yandex
+            redirect-uri: ${base-url}/login/oauth2/code/yandex
             authorization-grant-type: authorization_code
             scope:
               - login:email
@@ -28,3 +32,6 @@ spring:
             token-uri: https://oauth.yandex.ru/token
             user-name-attribute: default_email
             user-info-uri: https://login.yandex.ru/info
+
+        pre-established-redirect-uri: ${base-url}/login
+        use-current-uri: true
